@@ -1,0 +1,146 @@
+<h2 mat-dialog-title>Edición de personal</h2>
+<br>
+<div class="body">
+  <form class="example-container" [formGroup]="mForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content class="contenedor">
+  
+        <mat-form-field appearance="outline">
+            <mat-label>Apellido paterno:</mat-label>
+            <input matInput id="apPaterno" formControlName="apPaterno" maxlength="50" minlength="3">                
+            @if (apPaterno?.invalid && apPaterno?.touched) {
+                @if (apPaterno?.errors?.['required']) {
+                    <mat-error>Campo requerido.</mat-error>
+                }
+                @if (apPaterno?.errors?.['maxlength']) {
+                    <mat-error>Campo demasiado grande.</mat-error>
+                }
+                @if (apPaterno?.errors?.['minlength']) {
+                  <mat-error>Campo muy corto.</mat-error>
+              }
+            }                  
+        </mat-form-field> 
+
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido materno:</mat-label>
+          <input matInput id="apMaterno" formControlName="apMaterno" maxlength="50" minlength="3">                
+          @if (apMaterno?.invalid && apMaterno?.touched) {
+              @if (apMaterno?.errors?.['required']) {
+                  <mat-error>Campo requerido.</mat-error>
+              }
+              @if (apMaterno?.errors?.['maxlength']) {
+                  <mat-error>Campo demasiado grande.</mat-error>
+              }
+              @if (apMaterno?.errors?.['minlength']) {
+                <mat-error>Campo muy corto.</mat-error>
+            }
+          }                  
+        </mat-form-field> 
+
+        <mat-form-field appearance="outline">
+          <mat-label>Primer nombre:</mat-label>
+          <input matInput id="nombre1" formControlName="nombre1" maxlength="50" minlength="3">                
+          @if (nombre1?.invalid && apPaterno?.touched) {
+              @if (nombre1?.errors?.['required']) {
+                  <mat-error>Campo requerido.</mat-error>
+              }
+              @if (nombre1?.errors?.['maxlength']) {
+                  <mat-error>Campo demasiado grande.</mat-error>
+              }
+              @if (nombre1?.errors?.['minlength']) {
+                <mat-error>Campo muy corto.</mat-error>
+            }
+          }                  
+        </mat-form-field> 
+
+        <mat-form-field appearance="outline">
+          <mat-label>Segundo nombre:</mat-label>
+          <input matInput id="nombre2" formControlName="nombre2" maxlength="50" minlength="3">                
+          @if (nombre2?.invalid && apPaterno?.touched) {
+              @if (nombre2?.errors?.['maxlength']) {
+                  <mat-error>Campo demasiado grande.</mat-error>
+              }
+              @if (nombre2?.errors?.['minlength']) {
+                <mat-error>Campo muy corto.</mat-error>
+            }
+          }                  
+        </mat-form-field> 
+
+        <mat-form-field appearance="outline" style="width: 92%;">
+          <mat-label>Nombre completo:</mat-label>
+          <input matInput id="nombreCompleto" formControlName="nombreCompleto" readonly>                
+          @if (nombreCompleto?.invalid && nombreCompleto?.touched) {
+              @if (nombreCompleto?.errors?.['required']) {
+                  <mat-error>Email es requerido.</mat-error>
+              }
+              @if (nombreCompleto?.errors?.['maxlength']) {
+                  <mat-error>Formato de email inválido.</mat-error>
+              }
+          }                  
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo documento</mat-label>
+          <mat-select formControlName="tipoDoc">
+            @for (item of mListTipoDoc; track item) {
+              <mat-option [value]="item.nombre">{{item.nombre}}</mat-option>
+            }
+            
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nro. Documento:</mat-label>
+          <input matInput type="text" id="numeroDoc" formControlName="numeroDoc" pattern="[0-9]*" inputmode="numeric">                
+          @if (numeroDoc?.invalid && numeroDoc?.touched) {
+              @if (numeroDoc?.errors?.['required']) {
+                  <mat-error>Campo requerido.</mat-error>
+              }
+              @if (numeroDoc?.errors?.['minlength']) {
+                <mat-error>Campo inválido.</mat-error>
+            }
+              @if (numeroDoc?.errors?.['maxlength']) {
+                  <mat-error>Campo inválido.</mat-error>
+              }
+          }                  
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input matInput [matDatepicker]="pickerNac" formControlName="fechaNac" [min]="minFechaNac" [max]="maxFechaNac">
+          <mat-datepicker-toggle matSuffix [for]="pickerNac"></mat-datepicker-toggle>
+          <mat-datepicker #pickerNac></mat-datepicker>
+          @if (fechaNac?.invalid && fechaNac?.touched) {
+            @if (fechaNac?.errors?.['required']) {
+              <mat-error>La fecha de nacimiento es requerida.</mat-error>
+            }
+          } 
+          
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de ingreso</mat-label>
+          <input matInput [matDatepicker]="pickerIngreso" formControlName="fechaIngreso" [min]="minFechaIngreso" [max]="maxFechaIngreso">
+          <mat-datepicker-toggle matSuffix [for]="pickerIngreso"></mat-datepicker-toggle>
+          <mat-datepicker #pickerIngreso></mat-datepicker>
+          @if (fechaIngreso?.invalid && fechaIngreso?.touched) {
+            @if (fechaIngreso?.errors?.['required']) {
+              <mat-error>La fecha de ingreso es requerida.</mat-error>
+            }
+          }           
+        </mat-form-field>
+
+    </div>
+    <div mat-dialog-actions>
+  
+      <button button mat-stroked-button color="primary" type="submit" cdkFocusInitial
+        [disabled]="mForm.invalid">
+        <mat-icon>save</mat-icon>
+        <span>Guardar</span>
+      </button>
+      <button mat-stroked-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+        <span>Cancelar</span>
+      </button>
+    </div>
+  </form>
+</div>

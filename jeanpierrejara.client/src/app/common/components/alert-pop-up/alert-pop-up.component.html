@@ -1,0 +1,13 @@
+<div mat-dialog-content>
+    <h5>{{titulo}}</h5>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="warn" (click)="confirmar()">
+            <mat-icon>delete</mat-icon>
+            <span>Confirmar</span>
+        </button>
+        <button mat-raised-button color="primary" (click)="cancelar()">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+    </div>
+</div>

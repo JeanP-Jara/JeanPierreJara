@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+th{
+    color: white !important;
+    background-color: rgb(69,90,100) !important;
+}
+
+tr:nth-of-type(even) {
+    background-color: #F6F7F7;
+}
+
+tr:hover{
+    background-color: #E7EAED !important; 
+}
